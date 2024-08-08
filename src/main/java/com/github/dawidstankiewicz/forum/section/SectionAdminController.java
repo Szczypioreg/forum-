@@ -111,5 +111,4 @@ public class SectionAdminController {
         model.addFlashAttribute("message", "section.successfully.deleted");
         return "redirect:/home";
     }
-
 }

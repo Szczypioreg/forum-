@@ -19,6 +19,10 @@ public class SectionService {
         this.sectionRepository = sectionRepository;
     }
 
+    public Page<Section> findSections(Pageable pageable) {
+        return sectionRepository.findAll(pageable);
+    }
+
     public List<Section> findAll() {
         return sectionRepository.findAll();
     }
@@ -29,10 +33,6 @@ public class SectionService {
             throw new ResourceNotFoundException();
         }
         return sectionOptional.get();
-    }
-
-    public Section findByName(String name) {
-        return sectionRepository.findByName(name);
     }
 
     public Section save(Section section) {
@@ -47,7 +47,4 @@ public class SectionService {
         sectionRepository.delete(section);
     }
 
-    public Page<Section> findSections(Pageable pageable) {
-        return sectionRepository.findAll(pageable);
-    }
 }

@@ -102,18 +102,22 @@ public class TopicController {
         return "redirect:/topics/" + topic.getId();
     }
 
+    @PreAuthorize("hasAuthority('USER')")
     @RequestMapping(value = "delete/{idTopic}", method = RequestMethod.GET)
     public String delete(@PathTopic Topic topic,
                          Authentication authentication,
                          RedirectAttributes model) {
-        if (!authentication.getName().equals(topic.getUser().getEmail())) {
+        if (!isTopicOwner(topic, authentication)) {
             return "redirect:/topics/" + topic.getId();
         }
-
         topicService.delete(topic);
 
         model.addFlashAttribute("message", "topic.successfully.deleted");
         return "redirect:/section/" + topic.getSection().getId();
+    }
+
+    private static boolean isTopicOwner(Topic topic, Authentication authentication) {
+        return authentication.getName().equals(topic.getUser().getEmail());
     }
 
 }
