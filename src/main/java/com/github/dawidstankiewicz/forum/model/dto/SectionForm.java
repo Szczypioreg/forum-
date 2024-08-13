@@ -17,5 +17,6 @@ public class SectionForm {
     @Size(min = 3)
     private String name;
     private String description;
+    private String imageFilename;
 
 }

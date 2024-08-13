@@ -24,6 +24,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .addResourceLocations(
                         "file:src/main/resources/uploads/avatars/",
                         "file:src/main/resources/static/img/default-avatars/");
+        String userHomePath = System.getProperty("user.home");
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("file:///" + userHomePath + "/forum/images/sections/");
     }
 
     @Override

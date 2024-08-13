@@ -26,15 +26,19 @@
             <div class="row row-cols-auto" th:if="${sections.size() > 0}">
                 <div class="col my-3" th:each="section : ${sections}">
                     <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" alt="section image"
-                             src="https://unsplash.com/photos/1_CMoFsPfso/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzIyNTQzODU3fA&force=true&w=640"/>
+                        <div th:if="${section.getImageFilename()}" class="ratio ratio-4x3">
+                            <img  class="card-img-top img-fluid"
+                                 alt="section image"
+                                 th:src="@{'/images/' + ${section.getImageFilename()}}"/>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${section.name}"></h5>
+                            <p class="card-text" th:text="${section.description}"></p>
+                            <a class="btn btn-primary" th:href="@{/sections/} + ${section.id}">View section</a>
+                        </div>
                     </div>
 
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${section.name}"></h5>
-                        <p class="card-text" th:text="${section.description}"></p>
-                        <a class="btn btn-primary" th:href="@{/sections/} + ${section.id}">View section</a>
-                    </div>
                 </div>
             </div>
         </div>

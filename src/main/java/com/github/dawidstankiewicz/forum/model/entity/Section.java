@@ -27,6 +27,9 @@ public class Section {
     @Column(length = 150)
     private String description;
 
+    @Column(length = 50)
+    private String imageFilename;
+
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Topic> topics;
 }

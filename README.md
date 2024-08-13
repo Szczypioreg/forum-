@@ -22,6 +22,8 @@ Example of simple CRUD web application.
 - custom HandlerMethodArgumentResolver - PathTopicArgumentResolver and @PathTopic that looks for `idTopic` in the path and resolves it into Topic object that is injected into controller's methods
 - custom data validation annotations - @UniqueEmail or @UniqueUsername
 - resource handler with multiple paths - path `/avatars/**` (e.g. `/avatars/person.png`)
+- uploading file & data using multipart form - section image
+- saving file to storage
 
 ### Thymeleaf
 - Thymeleaf templates - table template for more complex example of data binding

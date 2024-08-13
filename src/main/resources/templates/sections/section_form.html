@@ -10,14 +10,16 @@
 
         <div class="col col-xl-4">
             <div class="card">
+                <img th:if="${newSection.getImageFilename()} and ${!newSection.getImageFilename().isEmpty()}" id="sectionImage" class="card-img-top" alt="section image"
+                     th:src="@{'/images/' + ${newSection.getImageFilename()}}"/>
+
                 <div class="card-body">
                     <div class="card-title">
                         <h5 th:text="${isNew} ? #{section.new} : #{section.edit}"></h5>
                     </div>
 
                     <form name='f' th:action="@{/a/sections/} + (${!isNew} ? ${newSection.id} : '')"
-                          th:object="${newSection}"
-                          method="POST">
+                          th:object="${newSection}" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label class="form-label" for="name" th:text="#{section.name}"></label>
                             <input th:field="*{name}" id="name" name='name' type="text" class="form-control"
@@ -33,6 +35,22 @@
                             <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
                                class="text-danger">
                                 Incorrect description!</p>
+                        </div>
+
+                        <div>
+                            <label class="form-label" for="file" th:text="#{section.image}"></label>
+                            <input type="file" name="file" id="file" accept="image/png, image/jpg, image/jpeg" class="form-control"/>
+                            <input style="visibility: hidden;" name="imageFilename">
+                        </div>
+                        <div class="mb-3">
+                            <button th:if="${newSection.getImageFilename()} and ${!newSection.getImageFilename().isEmpty()}" class="btn btn-outline-danger"
+                                    onclick="document.getElementById('file').value = null; document.getElementById('sectionImage').remove();"
+                                    type="button" th:text="#{section.clearImage}"></button>
+                        </div>
+
+                        <div th:if="${#fields.hasGlobalErrors()}">
+                            <div th:each="error : ${#fields.globalErrors()}" th:text="${error}" class="alert alert-danger" role="alert">
+                            </div>
                         </div>
 
                         <div class="d-grid">
