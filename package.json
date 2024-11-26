@@ -9,7 +9,7 @@
     "@babel/core": "^7.13.14",
     "@babel/preset-env": "^7.13.12",
     "babel-cli": "^6.26.0",
-    "browser-sync": "^2.26.14",
+    "browser-sync": "^3.0.2",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-environments": "^1.0.1",
