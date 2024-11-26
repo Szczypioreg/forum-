@@ -15,7 +15,7 @@
     "gulp-environments": "^1.0.1",
     "gulp-postcss": "^9.0.0",
     "gulp-purgecss": "^4.0.3",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-terser": "^2.0.1",
     "gulp-uglifycss": "^1.1.0",
     "gulp-watch": "^5.0.1"
